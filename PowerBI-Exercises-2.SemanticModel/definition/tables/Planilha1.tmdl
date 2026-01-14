@@ -1,0 +1,134 @@
+table Planilha1
+	lineageTag: eecea31a-4e56-48f4-8ab1-34952e14a450
+
+	column DataEmissao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2b8f22ea-1400-4687-9011-9306582462c4
+		summarizeBy: none
+		sourceColumn: DataEmissao
+
+		variation Variation
+			isDefault
+			relationship: 6b419bf9-bb00-4bdc-8632-aee9ef147bcc
+			defaultHierarchy: LocalDateTable_8a399bd7-4cab-42b1-ae8f-f5f53781ec3d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column NFe
+		dataType: string
+		lineageTag: c146e212-b5b1-40e9-9441-d8fa9870ad45
+		summarizeBy: none
+		sourceColumn: NFe
+
+		annotation SummarizationSetBy = Automatic
+
+	column cdProduto
+		dataType: string
+		lineageTag: c151c1ff-2a66-4d8b-9441-4557c46dae41
+		summarizeBy: none
+		sourceColumn: cdProduto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produto
+		dataType: string
+		lineageTag: 138b3729-48c1-477c-a722-07d43a323df8
+		summarizeBy: none
+		sourceColumn: Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo Produto'
+		dataType: string
+		lineageTag: 92dc45b8-a887-4b3c-8d96-c36d1e10992c
+		summarizeBy: none
+		sourceColumn: Grupo Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linha Produto'
+		dataType: string
+		lineageTag: 41f93773-67a7-4cff-8055-9a6dc242b772
+		summarizeBy: none
+		sourceColumn: Linha Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column cdVendedor
+		dataType: string
+		lineageTag: 25f765cd-0fe3-4412-8298-8f38368246dc
+		summarizeBy: none
+		sourceColumn: cdVendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendedor
+		dataType: string
+		lineageTag: 7708fc94-5add-474c-a142-15423967eff5
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supervisor
+		dataType: string
+		lineageTag: 0ec5d869-2d3a-41d6-b243-f109b63a4d5d
+		summarizeBy: none
+		sourceColumn: Supervisor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gerente
+		dataType: string
+		lineageTag: 412fc32e-da82-486f-b1d3-cbef30d6c014
+		summarizeBy: none
+		sourceColumn: Gerente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Equipe Vendas'
+		dataType: string
+		lineageTag: 9f459d29-66a2-4be2-9dfc-d2aed9033dac
+		summarizeBy: none
+		sourceColumn: Equipe Vendas
+
+		annotation SummarizationSetBy = Automatic
+
+	column QtdItens
+		dataType: double
+		lineageTag: 8a84e055-ea23-4348-a857-14077aeb3a62
+		summarizeBy: sum
+		sourceColumn: QtdItens
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ValorUnitario
+		dataType: double
+		lineageTag: 12321b3f-f503-48ed-b008-787bcab9ad10
+		summarizeBy: sum
+		sourceColumn: ValorUnitario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Planilha1 = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\Euller dos Santos\Documents\0. Curso\Xperium\Power Query Essencial 2.0\BaseDados\Vendas.xlsx"), null, true),
+				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"DataEmissao", type date}, {"NFe", type text}, {"cdProduto", type text}, {"Produto", type text}, {"Grupo Produto", type text}, {"Linha Produto", type text}, {"cdVendedor", type text}, {"Vendedor", type text}, {"Supervisor", type text}, {"Gerente", type text}, {"Equipe Vendas", type text}, {"QtdItens", type number}, {"ValorUnitario", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
