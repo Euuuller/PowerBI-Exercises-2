@@ -1,5 +1,5 @@
 relationship 6b419bf9-bb00-4bdc-8632-aee9ef147bcc
 	joinOnDateBehavior: datePartOnly
-	fromColumn: Planilha1.DataEmissao
+	fromColumn: Vendas.DataEmissao
 	toColumn: LocalDateTable_8a399bd7-4cab-42b1-ae8f-f5f53781ec3d.Date
 

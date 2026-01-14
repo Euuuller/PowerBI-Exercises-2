@@ -1,4 +1,4 @@
-table Planilha1
+table Vendas
 	lineageTag: eecea31a-4e56-48f4-8ab1-34952e14a450
 
 	column DataEmissao
@@ -117,16 +117,28 @@ table Planilha1
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition Planilha1 = m
+	column Vendas
+		dataType: double
+		lineageTag: 4d4aea6b-3e33-4b75-bc58-ea05b46a3168
+		summarizeBy: sum
+		sourceColumn: Vendas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Vendas = m
 		mode: import
 		source =
 				let
 				    Fonte = Excel.Workbook(File.Contents("C:\Users\Euller dos Santos\Documents\0. Curso\Xperium\Power Query Essencial 2.0\BaseDados\Vendas.xlsx"), null, true),
 				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"DataEmissao", type date}, {"NFe", type text}, {"cdProduto", type text}, {"Produto", type text}, {"Grupo Produto", type text}, {"Linha Produto", type text}, {"cdVendedor", type text}, {"Vendedor", type text}, {"Supervisor", type text}, {"Gerente", type text}, {"Equipe Vendas", type text}, {"QtdItens", type number}, {"ValorUnitario", type number}})
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"DataEmissao", type date}, {"NFe", type text}, {"cdProduto", type text}, {"Produto", type text}, {"Grupo Produto", type text}, {"Linha Produto", type text}, {"cdVendedor", type text}, {"Vendedor", type text}, {"Supervisor", type text}, {"Gerente", type text}, {"Equipe Vendas", type text}, {"QtdItens", type number}, {"ValorUnitario", type number}}),
+				    #"Multiplicação Inserida" = Table.AddColumn(#"Tipo Alterado", "Multiplicação", each [QtdItens] * [ValorUnitario], type number),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Multiplicação Inserida",{{"Multiplicação", "Vendas"}})
 				in
-				    #"Tipo Alterado"
+				    #"Colunas Renomeadas"
 
 	annotation PBI_NavigationStepName = Navegação
 
