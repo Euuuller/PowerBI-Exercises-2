@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "6d43ae95de0742d73410",
+  "name": "3a2110d8ec33cded4dd7",
   "position": {
-    "x": 515.13611615245009,
+    "x": 490.16333938293997,
     "y": 0,
-    "z": 2000,
-    "height": 100,
-    "width": 250,
-    "tabOrder": 2000
+    "z": 1000,
+    "height": 150,
+    "width": 300,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -25,14 +25,14 @@
                           "Entity": "Vendas"
                         }
                       },
-                      "Property": "Vendas"
+                      "Property": "NFe"
                     }
                   },
                   "Function": 2
                 }
               },
-              "queryRef": "Sum(Vendas.Vendas)",
-              "nativeQueryRef": "Contagem de Vendas"
+              "queryRef": "Sum(Vendas.NFe)",
+              "nativeQueryRef": "Contagem de NFe1"
             }
           ]
         }
@@ -49,7 +49,7 @@
                         "Entity": "Vendas"
                       }
                     },
-                    "Property": "Vendas"
+                    "Property": "NFe"
                   }
                 },
                 "Function": 2
@@ -61,10 +61,35 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "title": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "titleWrap": {
               "expr": {
                 "Literal": {
@@ -97,7 +122,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -111,13 +136,59 @@
           }
         }
       ],
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
       "border": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "width": {
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -130,7 +201,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d94e5f89b05026393d6b",
+        "name": "04d1cf1ec6212edd3957",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -140,7 +211,7 @@
                     "Entity": "Vendas"
                   }
                 },
-                "Property": "Vendas"
+                "Property": "NFe"
               }
             },
             "Function": 2

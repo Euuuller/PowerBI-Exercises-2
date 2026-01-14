@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "5650666489630eb806c4",
+  "name": "c86142f67887b0eae0a6",
   "position": {
     "x": 0,
-    "y": 154.48275862068965,
-    "z": 3000,
-    "height": 283.41197822141561,
-    "width": 728.27586206896547,
-    "tabOrder": 3000
+    "y": 160.29038112522684,
+    "z": 2001,
+    "height": 285.73502722323047,
+    "width": 749.18330308529949,
+    "tabOrder": 2001
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "lineStackedColumnComboChart",
     "query": {
       "queryState": {
         "Category": {
@@ -44,6 +44,29 @@
           ]
         },
         "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Vendas"
+                        }
+                      },
+                      "Property": "ValorUnitario"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Vendas.ValorUnitario)",
+              "nativeQueryRef": "Soma de ValorUnitario"
+            }
+          ]
+        },
+        "Y2": {
           "projections": [
             {
               "field": {
@@ -97,31 +120,40 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "alignZeros": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "012d7336bbeb21256313",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Vendas"
-                  }
-                },
-                "Property": "QtdItens"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b46741cd736c66e05b67",
+        "name": "2b347a2a0966b5603609",
         "field": {
           "HierarchyLevel": {
             "Expression": {
@@ -141,6 +173,44 @@
               }
             },
             "Level": "Ano"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "41d8c880e00320446d29",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Vendas"
+                  }
+                },
+                "Property": "ValorUnitario"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0cf416068c54a106a014",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Vendas"
+                  }
+                },
+                "Property": "QtdItens"
+              }
+            },
+            "Function": 0
           }
         },
         "type": "Advanced"

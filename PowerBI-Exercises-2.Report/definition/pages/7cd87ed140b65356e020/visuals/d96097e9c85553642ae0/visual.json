@@ -1,19 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "c82472b60368c72043c0",
+  "name": "d96097e9c85553642ae0",
   "position": {
     "x": 0,
-    "y": 437.89473684210526,
-    "z": 4000,
-    "height": 282.25045372050818,
-    "width": 439.05626134301269,
-    "tabOrder": 4000
+    "y": 446.02540834845735,
+    "z": 2003,
+    "height": 274.11978221415609,
+    "width": 384.46460980036295,
+    "tabOrder": 2003
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Values": {
+        "Rows": {
           "projections": [
             {
               "field": {
@@ -27,8 +27,28 @@
                 }
               },
               "queryRef": "Vendas.Gerente",
-              "nativeQueryRef": "Gerente"
+              "nativeQueryRef": "Gerente",
+              "active": true
             },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Vendas"
+                    }
+                  },
+                  "Property": "Supervisor"
+                }
+              },
+              "queryRef": "Vendas.Supervisor",
+              "nativeQueryRef": "Supervisor",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
             {
               "field": {
                 "Aggregation": {
@@ -39,14 +59,14 @@
                           "Entity": "Vendas"
                         }
                       },
-                      "Property": "Vendas"
+                      "Property": "ValorTotal"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(Vendas.Vendas)",
-              "nativeQueryRef": "Soma de Vendas"
+              "queryRef": "Sum(Vendas.ValorTotal)",
+              "nativeQueryRef": "Soma de ValorTotal"
             },
             {
               "field": {
@@ -69,32 +89,78 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "isDefaultSort": true
       }
     },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Vendas.Gerente"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Vendas"
+                    }
+                  },
+                  "Property": "Gerente"
                 }
               }
-            }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Vendas.Supervisor"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
           }
-        }
-      ]
-    },
+        ],
+        "root": {}
+      }
+    ],
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "43b69da53d2b16b78d83",
+        "name": "703993b5dca6cb049d9a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Vendas"
+              }
+            },
+            "Property": "Gerente"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "025d1950280c447c163e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Vendas"
+              }
+            },
+            "Property": "Supervisor"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e2ca6c72cab1db8b5073",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -104,7 +170,7 @@
                     "Entity": "Vendas"
                   }
                 },
-                "Property": "Vendas"
+                "Property": "ValorTotal"
               }
             },
             "Function": 0
@@ -113,7 +179,7 @@
         "type": "Advanced"
       },
       {
-        "name": "ba4f734a24791d706038",
+        "name": "8c38b5b7d21704b32cb3",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -130,20 +196,6 @@
           }
         },
         "type": "Advanced"
-      },
-      {
-        "name": "b8e398309e94d386b443",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Vendas"
-              }
-            },
-            "Property": "Gerente"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

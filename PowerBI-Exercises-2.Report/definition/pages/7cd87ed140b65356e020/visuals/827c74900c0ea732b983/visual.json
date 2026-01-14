@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "b7879fb5a09d33274cb2",
+  "name": "827c74900c0ea732b983",
   "position": {
-    "x": 728.27586206896547,
-    "y": 154.48275862068965,
-    "z": 5001,
-    "height": 565.66243194192373,
-    "width": 551.72413793103442,
-    "tabOrder": 5001
+    "x": 828.16696914700537,
+    "y": 160.29038112522684,
+    "z": 2002,
+    "height": 559.85480943738651,
+    "width": 451.83303085299457,
+    "tabOrder": 2002
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -44,14 +44,14 @@
                           "Entity": "Vendas"
                         }
                       },
-                      "Property": "Vendas"
+                      "Property": "QtdItens"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(Vendas.Vendas)",
-              "nativeQueryRef": "Soma de Vendas"
+              "queryRef": "Sum(Vendas.QtdItens)",
+              "nativeQueryRef": "Soma de QtdItens"
             }
           ]
         }
@@ -68,7 +68,7 @@
                         "Entity": "Vendas"
                       }
                     },
-                    "Property": "Vendas"
+                    "Property": "QtdItens"
                   }
                 },
                 "Function": 0
@@ -85,26 +85,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d9cb53872084500e08ee",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Vendas"
-                  }
-                },
-                "Property": "Vendas"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "10890f5e8e8aa3955797",
+        "name": "83df3b32a11a76946e56",
         "field": {
           "Column": {
             "Expression": {
@@ -116,6 +97,25 @@
           }
         },
         "type": "Categorical"
+      },
+      {
+        "name": "4960860f67e78c94ae67",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Vendas"
+                  }
+                },
+                "Property": "QtdItens"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

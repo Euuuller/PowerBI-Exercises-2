@@ -1,38 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "7a4d0e19c0d49b24b805",
+  "name": "a453393a3167e48d6b02",
   "position": {
-    "x": 439.05626134301269,
-    "y": 437.89473684210526,
-    "z": 5000,
-    "height": 282.25045372050818,
-    "width": 289.21960072595283,
-    "tabOrder": 5000
+    "x": 99.891107078039923,
+    "y": 0,
+    "z": 2000,
+    "height": 150,
+    "width": 300,
+    "tabOrder": 2000
   },
   "visual": {
-    "visualType": "donutChart",
+    "visualType": "cardVisual",
     "query": {
       "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Vendas"
-                    }
-                  },
-                  "Property": "Linha Produto"
-                }
-              },
-              "queryRef": "Vendas.Linha Produto",
-              "nativeQueryRef": "Linha Produto",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
+        "Data": {
           "projections": [
             {
               "field": {
@@ -44,14 +25,15 @@
                           "Entity": "Vendas"
                         }
                       },
-                      "Property": "Vendas"
+                      "Property": "ValorUnitario"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(Vendas.Vendas)",
-              "nativeQueryRef": "Soma de Vendas"
+              "queryRef": "Sum(Vendas.ValorUnitario)",
+              "nativeQueryRef": "Soma de ValorUnitario",
+              "format": "0.00"
             }
           ]
         }
@@ -68,7 +50,7 @@
                         "Entity": "Vendas"
                       }
                     },
-                    "Property": "Vendas"
+                    "Property": "ValorUnitario"
                   }
                 },
                 "Function": 0
@@ -81,7 +63,38 @@
       }
     },
     "objects": {
-      "legend": [
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "lockAspect": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
         {
           "properties": {
             "show": {
@@ -93,10 +106,34 @@
             }
           }
         }
-      ]
-    },
-    "visualContainerObjects": {
-      "title": [
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
         {
           "properties": {
             "show": {
@@ -105,11 +142,17 @@
                   "Value": "true"
                 }
               }
-            },
-            "alignment": {
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "true"
                 }
               }
             }
@@ -122,21 +165,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "0d99ba1cd5ed9ea7416b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Vendas"
-              }
-            },
-            "Property": "Linha Produto"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "5df6e909eab43abcc7bc",
+        "name": "2f8e6c0207a74012409d",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -146,7 +175,7 @@
                     "Entity": "Vendas"
                   }
                 },
-                "Property": "Vendas"
+                "Property": "ValorUnitario"
               }
             },
             "Function": 0

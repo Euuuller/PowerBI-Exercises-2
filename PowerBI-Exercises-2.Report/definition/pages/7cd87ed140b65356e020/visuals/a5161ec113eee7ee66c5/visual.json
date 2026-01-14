@@ -1,19 +1,38 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "73dcc5d04a13d268d3b5",
+  "name": "a5161ec113eee7ee66c5",
   "position": {
-    "x": 1030.2722323049002,
-    "y": 0,
-    "z": 1000,
-    "height": 99.891107078039923,
-    "width": 249.7277676950998,
-    "tabOrder": 1000
+    "x": 384.46460980036295,
+    "y": 446.02540834845735,
+    "z": 2004,
+    "height": 274.11978221415609,
+    "width": 364.71869328493648,
+    "tabOrder": 2004
   },
   "visual": {
-    "visualType": "cardVisual",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
-        "Data": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Vendas"
+                    }
+                  },
+                  "Property": "Linha Produto"
+                }
+              },
+              "queryRef": "Vendas.Linha Produto",
+              "nativeQueryRef": "Linha Produto",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
           "projections": [
             {
               "field": {
@@ -25,14 +44,14 @@
                           "Entity": "Vendas"
                         }
                       },
-                      "Property": "ValorUnitario"
+                      "Property": "ValorTotal"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(Vendas.ValorUnitario)",
-              "nativeQueryRef": "Soma de ValorUnitario"
+              "queryRef": "Sum(Vendas.ValorTotal)",
+              "nativeQueryRef": "Soma de ValorTotal"
             }
           ]
         }
@@ -49,7 +68,7 @@
                         "Entity": "Vendas"
                       }
                     },
-                    "Property": "ValorUnitario"
+                    "Property": "ValorTotal"
                   }
                 },
                 "Function": 0
@@ -61,37 +80,8 @@
         "isDefaultSort": true
       }
     },
-    "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "spacing": [
-        {
-          "properties": {
-            "verticalSpacing": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        }
-      ],
-      "background": [
+    "objects": {
+      "labels": [
         {
           "properties": {
             "show": {
@@ -101,23 +91,10 @@
                 }
               }
             },
-            "transparency": {
+            "labelStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
+                  "Value": "'Percent of total'"
                 }
               }
             }
@@ -130,7 +107,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "3d6b1de0119127cb2c62",
+        "name": "2a2027c789480c4acb43",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -140,13 +117,27 @@
                     "Entity": "Vendas"
                   }
                 },
-                "Property": "ValorUnitario"
+                "Property": "ValorTotal"
               }
             },
             "Function": 0
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "d6d9dac12ebace94171a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Vendas"
+              }
+            },
+            "Property": "Linha Produto"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }

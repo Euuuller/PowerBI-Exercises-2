@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "ce1e97fd886a6811adb1",
+  "name": "958b0ca1a9ccddd13d79",
   "position": {
-    "x": 0,
+    "x": 880.43557168784,
     "y": 0,
     "z": 0,
-    "height": 100,
-    "width": 250,
+    "height": 150,
+    "width": 300,
     "tabOrder": 0
   },
   "visual": {
@@ -61,21 +61,39 @@
         "isDefaultSort": true
       }
     },
-    "visualContainerObjects": {
-      "title": [
+    "objects": {
+      "border": [
         {
           "properties": {
-            "titleWrap": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            },
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -104,7 +122,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -118,16 +136,9 @@
           }
         }
       ],
-      "border": [
+      "lockAspect": [
         {
           "properties": {
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {
@@ -138,13 +149,46 @@
           }
         }
       ],
-      "dropShadow": [
+      "border": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -157,7 +201,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "5c255240e12ea7c107a6",
+        "name": "8f2dad2e6543b60bd372",
         "field": {
           "Aggregation": {
             "Expression": {
