@@ -1,0 +1,88 @@
+table 2017
+	lineageTag: e43f2116-f8de-4d6f-b5ef-4aa823b94bbd
+
+	column Região
+		dataType: string
+		lineageTag: 90d56836-f1cd-4dcc-b6b7-6de3f4a5df5a
+		summarizeBy: none
+		sourceColumn: Região
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF
+		dataType: string
+		lineageTag: 8c586801-a8c8-4fae-bd21-471c66ad0710
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: b652fe61-27f7-41d7-b5ef-ed5e6e919887
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: string
+		lineageTag: 32b6f2b1-4e83-466f-a6c5-0e77a07e8b19
+		summarizeBy: none
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: int64
+		formatString: 0
+		lineageTag: 66d1ffdb-7f89-424e-a9c7-66022327b4da
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Num'
+		dataType: double
+		lineageTag: 993fea80-93bc-4371-8a1e-6bc3d176e225
+		summarizeBy: sum
+		sourceColumn: Mês Num
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Ano
+		dataType: string
+		lineageTag: 79a61e3b-6f8d-4bc1-bca0-f27a184d50bb
+		summarizeBy: none
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 2017 = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\Euller dos Santos\Documents\0. Curso\Xperium\Power Query Essencial 2.0\ExercicioTratamento\Base\Vendas 2017.xlsx"), null, true),
+				    #"2017_Sheet" = Fonte{[Item="2017",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"2017_Sheet", [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Relatório Anual de Vendas", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([Column16] <> null)),
+				    #"Cabeçalhos Promovidos1" = Table.PromoteHeaders(#"Linhas Filtradas", [PromoteAllScalars=true]),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos1",{{"Região", type text}, {"UF", type text}, {"Cidade", type text}, {"(Mês 01) Janeiro", Int64.Type}, {"(Mês 02) Fevereiro", Int64.Type}, {"(Mês 03) Março", Int64.Type}, {"(Mês 04) Abril", Int64.Type}, {"(Mês 05) Maio", Int64.Type}, {"(Mês 06) Junho", Int64.Type}, {"(Mês 07) Julho", Int64.Type}, {"(Mês 08) Agosto", Int64.Type}, {"(Mês 09) Setembro", Int64.Type}, {"(Mês 10) Outubro", Int64.Type}, {"(Mês 11) Novembro", Int64.Type}, {"(Mês 12) Dezembro", Int64.Type}, {"Total", Int64.Type}}),
+				    #"Linhas Inferiores Removidas" = Table.RemoveLastN(#"Tipo Alterado1",1),
+				    #"Preenchido Abaixo" = Table.FillDown(#"Linhas Inferiores Removidas",{"Região", "UF"}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Preenchido Abaixo",{"Total"}),
+				    #"Outras Colunas Não Dinâmicas" = Table.UnpivotOtherColumns(#"Colunas Removidas", {"Região", "UF", "Cidade"}, "Mês", "Valor"),
+				    #"Texto Inserido Entre os Delimitadores" = Table.AddColumn(#"Outras Colunas Não Dinâmicas", "Mês Num", each Text.BetweenDelimiters([Mês], " ", ")"), type text),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Texto Inserido Entre os Delimitadores",{{"Mês Num", type number}}),
+				    #"Texto Extraído Após o Delimitador" = Table.TransformColumns(#"Tipo Alterado2", {{"Mês", each Text.AfterDelimiter(_, " ", 1), type text}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Texto Extraído Após o Delimitador", "Ano", each 2017)
+				in
+				    #"Personalização Adicionada"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

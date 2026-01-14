@@ -8,13 +8,15 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Vendas"]
+annotation PBI_QueryOrder = ["Vendas","Metas","2017"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table Vendas
 ref table DateTableTemplate_86b5fa8a-d106-42e7-9a5f-1634effa70d3
 ref table LocalDateTable_8a399bd7-4cab-42b1-ae8f-f5f53781ec3d
+ref table Metas
+ref table 2017
 
 ref cultureInfo pt-BR
 
